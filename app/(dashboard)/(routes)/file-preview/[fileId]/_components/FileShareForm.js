@@ -1,7 +1,7 @@
 // FileShareForm.js (or any other component)
 import React, { useState } from 'react';
 import { Copy } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications'; // Import useToasts hook
+// import { useToasts } from 'react-toast-notifications'; // Import useToasts hook
 import GlobalApi from '../../../../../_utils/GlobalApi';
 import { useUser } from '@clerk/nextjs';
 
@@ -10,12 +10,12 @@ function FileShareForm({ file, onPasswordSave }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const { user } = useUser();
-  const { addToast } = useToasts(); // Initialize useToasts hook
+  // const { addToast } = useToasts(); // Initialize useToasts hook
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(file.shortUrl);
-    addToast('URL copied to clipboard!', { appearance: 'success' }); // Show success toast
-  };
+  // const handleCopy = () => {
+  //   navigator.clipboard.writeText(file.shortUrl);
+  //   addToast('URL copied to clipboard!', { appearance: 'success' }); // Show success toast
+  // };
 
   const sendEmail = () => {
     const data = {
@@ -32,7 +32,7 @@ function FileShareForm({ file, onPasswordSave }) {
 
     GlobalApi.SendEmail(data).then(response => {
       console.log("Response:", response);
-      addToast('Email sent successfully!', { appearance: 'success' }); // Show success toast
+      // addToast('Email sent successfully!', { appearance: 'success' }); // Show success toast
     });
   };
 
@@ -49,7 +49,7 @@ function FileShareForm({ file, onPasswordSave }) {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
           />
           <button
-            onClick={handleCopy}
+            
             className="absolute right-2 top-1 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <Copy className="w-5 h-5 text-gray-400 hover:text-gray-700" />
