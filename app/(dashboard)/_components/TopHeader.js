@@ -12,7 +12,7 @@ console.log('API=========',process.env.RESEND_API_KEY);
        { !showSideNav ?
         <AlignJustify className='md:hidden'/>
         : null }
-        <Image className="md:hidden" src='/logo.svg' width={150} height={100}/> 
+        <Image className="md:hidden" src='/logo.png' width={150} height={100}/> 
         <UserButton/>
     </div>
   )

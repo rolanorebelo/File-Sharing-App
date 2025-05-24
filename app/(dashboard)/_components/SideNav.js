@@ -33,7 +33,7 @@ function SideNav() {
   return (
     <div className='shadow-sm border-r h-full'>
         <div className='p-5 border-b'>
-            <Image src='/logo.svg' width={150} height={100}/>
+            <Image src='/logo.png' width={150} height={100}/>
         </div>
         <div className='flex flex-col float-left w-full'>
             {menuList.map((item, index) =>(
