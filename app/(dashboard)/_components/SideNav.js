@@ -29,7 +29,7 @@ function SideNav() {
     const pathname = usePathname();
 
     return (
-        <div className="h-full min-h-screen w-64 bg-gradient-to-b from-blue-950 via-blue-900 to-gray-900 shadow-2xl flex flex-col">
+        <div className="h-full min-h-screen w-64 bg-gradient-to-b from-blue-800 via-blue-900 to-gray-900 shadow-2xl flex flex-col">
             <div className="p-8 flex flex-col items-center border-b border-blue-900/40">
                 <Image src='/logo.png' width={120} height={80} alt="Logo" className="mb-2" />
                 <span className="text-xl font-bold text-blue-300 tracking-wide"></span>
@@ -41,7 +41,7 @@ function SideNav() {
                             <button
                                 className={`flex items-center gap-4 w-full px-6 py-3 rounded-lg transition-all duration-200
                                     ${pathname === item.path
-                                        ? 'bg-gradient-to-r from-blue-700 via-blue-600 to-purple-700 text-white shadow-lg'
+                                        ? 'bg-gradient-to-r from-blue-400 via-blue-600 to-purple-700 text-white shadow-lg'
                                         : 'text-blue-200 hover:bg-blue-900/60 hover:text-white'
                                     } font-semibold text-lg`}
                                 onClick={() => router.push(item.path)}
