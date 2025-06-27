@@ -8,8 +8,8 @@ import { useUser } from '@clerk/nextjs';
 import {generateRandomString} from '../../../../app/_utils/GenerateRandomString'; 
 import CompleteCheck from './_components/CompleteCheck'
 import { useRouter } from 'next/navigation';
-function Upload() {
 
+function Upload() {
   const {user} = useUser();
   const [progress,setProgress] = useState();
   const router = useRouter();
@@ -21,24 +21,16 @@ function Upload() {
     const metadata = {
       contentType: file.type
     };
-    
     const storageRef = ref(storage, 'file-upload/'+file?.name);
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
     uploadTask.on('state_changed',
       (snapshot) => {
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
         setProgress(progress);
         progress==100&& getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
           saveInfo(file, downloadURL);
         });
-    
-       
       })    
-
-
   }
 
   useEffect(() => {
@@ -51,7 +43,6 @@ function Upload() {
     uploadCompleted&& 
     setTimeout(() =>{
       setUploadCompleted(false);
-      console.log('id',fileDocId);
       router.push('/file-preview/'+fileDocId);
     },2000)},[uploadCompleted==true]);
 
@@ -70,16 +61,24 @@ function Upload() {
     });
     setFileDocId(docId);
   }
+
   return (
-    <div className='p-5 px-8 md:px-28'>
-      {!uploadCompleted? <div>
-    <h2 className='text-[20px] text-center m-5' >Start 
-      <strong className='text-primary'> Uploading </strong>
-      File and 
-      <strong className='text-primary'> Share </strong>
-      it</h2>
-    <UploadForm uploadBtnClick = {(file) => uploadFile(file) } progress={progress}/>
-      </div> : <CompleteCheck/>}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-gray-900 font-sans">
+      <div className="w-full max-w-2xl p-10 rounded-3xl shadow-2xl bg-gray-950 bg-opacity-90 border border-blue-800/40">
+        {!uploadCompleted ? (
+          <div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
+              Upload &amp; <span className="text-blue-400">Share</span> Your Files
+            </h2>
+            <p className="text-center text-lg text-gray-300 mb-8 font-medium">
+              Securely upload your files and share them with anyone, anywhere.
+            </p>
+            <UploadForm uploadBtnClick={(file) => uploadFile(file)} progress={progress}/>
+          </div>
+        ) : (
+          <CompleteCheck/>
+        )}
+      </div>
     </div>
   )
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react'
 import AlertMsg from './AlertMsg';
 import FilePreview from './FilePreview';

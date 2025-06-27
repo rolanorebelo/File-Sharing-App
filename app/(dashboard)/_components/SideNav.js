@@ -1,51 +1,63 @@
 "use client"
 import Image from 'next/image'
-import React, {useState} from 'react'
+import React from 'react'
 import { File, Shield, Upload } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+
 function SideNav() {
     const menuList = [
         {
-            id:1,
-            name:'Upload',
+            id: 1,
+            name: 'Upload',
             icon: Upload,
-            path:'/upload'
+            path: '/upload'
         },
         {
-            id:2,
-            name:'Files',
+            id: 2,
+            name: 'Files',
             icon: File,
-            path:'/files'
+            path: '/files'
         },
         {
-            id:3,
-            name:'Upgrade',
+            id: 3,
+            name: 'Upgrade',
             icon: Shield,
-            path:'/upgrade'
+            path: '/upgrade'
         },
     ]
-    const [activeIndex,setActiveIndex] = useState(0);
     const router = useRouter();
-    const handleClick = (item,index) => {
-        setActiveIndex(index);
-        router.push(item.path);
-    }
-  return (
-    <div className='shadow-sm border-r h-full'>
-        <div className='p-5 border-b'>
-            <Image src='/logo.png' width={150} height={100}/>
+    const pathname = usePathname();
+
+    return (
+        <div className="h-full min-h-screen w-64 bg-gradient-to-b from-blue-950 via-blue-900 to-gray-900 shadow-2xl flex flex-col">
+            <div className="p-8 flex flex-col items-center border-b border-blue-900/40">
+                <Image src='/logo.png' width={120} height={80} alt="Logo" className="mb-2" />
+                <span className="text-xl font-bold text-blue-300 tracking-wide"></span>
+            </div>
+            <nav className="flex-1 py-8">
+                <ul className="flex flex-col gap-2">
+                    {menuList.map((item) => (
+                        <li key={item.id}>
+                            <button
+                                className={`flex items-center gap-4 w-full px-6 py-3 rounded-lg transition-all duration-200
+                                    ${pathname === item.path
+                                        ? 'bg-gradient-to-r from-blue-700 via-blue-600 to-purple-700 text-white shadow-lg'
+                                        : 'text-blue-200 hover:bg-blue-900/60 hover:text-white'
+                                    } font-semibold text-lg`}
+                                onClick={() => router.push(item.path)}
+                            >
+                                <item.icon size={22} className="shrink-0" />
+                                <span>{item.name}</span>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+            <div className="mt-auto p-6 text-xs text-blue-300 opacity-60 text-center">
+                &copy; {new Date().getFullYear()} CipherShare
+            </div>
         </div>
-        <div className='flex flex-col float-left w-full'>
-            {menuList.map((item, index) =>(
-                <button className={`flex gap-2 p-4 px-6 hover:bg-gray-100 w-full
-                text-gray-500 ${activeIndex == index?'bg-blue-50 text-primary':null}`} onClick={() => handleClick(item,index)}>
-                    <item.icon/>
-                   <h2>{item.name}</h2> 
-                </button>
-            ))}
-        </div>
-    </div>
-  )
+    )
 }
 
 export default SideNav

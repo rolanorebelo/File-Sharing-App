@@ -28,12 +28,12 @@ export default function Page() {
         </a>
 
         <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-          Welcome to File Sharing App 🦑
+          Welcome to Cipher Share 🦑
         </h2>
 
         <p className="mt-4 leading-relaxed text-white/90">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-          quibusdam aperiam voluptatum.
+          Easily upload, store, and share images — all in one place.<br />
+Our platform lets you securely upload high-quality images, generate unique shareable links, and access them anytime, anywhere. Simple, fast, and private.
         </p>
       </div>
     </section>
@@ -53,12 +53,12 @@ export default function Page() {
           </a>
 
           <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl dark:text-white">
-            Welcome to File Sharing App 🦑
+            Welcome to Cipher Share 🦑
           </h1>
 
           <p className="mt-4 leading-relaxed text-gray-500 dark:text-gray-400">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-            quibusdam aperiam voluptatum.
+            Easily upload, store, and share images — all in one place.<br />
+Our platform lets you securely upload high-quality images, generate unique shareable links, and access them anytime, anywhere. Simple, fast, and private.
           </p>
         </div>
 <SignIn/>
